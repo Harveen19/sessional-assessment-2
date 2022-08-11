@@ -5,14 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Picture Gallery Application</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
    <div id="header">
     <div class="container">
         <nav>
             <img src="images/logo.png" class="logo">
-            <ul>
+            <ul style="float:right;">
                 <li><a href="#">Home</a></li>
                 <li><a href="#">About</a></li>
                 <li><a href="#">Contact</a></li>
@@ -21,9 +25,9 @@
     </div>
    </div>
 
-   <section class="contact" id="contact">
+   <section class="contact" id="contact" style="background:#ffc0cb">
 
-    <form action="">
+    <form action=" " >
         <h3>Picture Gallery</h3>
         <div class="inputBox">
             <input type="text" placeholder="First Name">
@@ -39,25 +43,28 @@
 
 </section>
 
+<div id="apipics" style="background:#ffc0cb">
+    <div class="row apisec"></div>
+</div>
 
 <footer>
     <p>Copyright &copy; by Harveen Kaur</p>
    </footer>
 </body>
 </html>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 <script>
 $(document).ready(function(){
-
+    var str = '';
     $.ajax({
         url: "https://jsonplaceholder.typicode.com/photos?utm_source=Mailerlite&utm_medium=E-mail&utm_campaign=Test%20Series&utm_term=2022-08-11", 
         success: function(result){
             console.log(result);
 
             $.each(result,function(i,j){
-
+                str+='<div class="col-sm-2"><img src="'+j.thumbnailUrl+'"></div>'
             });
-           // $("#div1").html(result);
+            $(".apisec").html(str);
         }});
 });
 </script>
